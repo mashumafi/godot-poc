@@ -33,4 +33,57 @@ size_flags_vertical = 1
 script = ExtResource( 2 )
 _sections_unfolded = [ "Rect" ]
 
+[node name="width_sb" type="SpinBox" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 192.0
+margin_right = 320.0
+margin_bottom = 24.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 255.0
+step = 1.0
+page = 0.0
+value = 3.0
+exp_edit = false
+rounded = false
+editable = true
+prefix = "Width"
+suffix = ""
+_sections_unfolded = [ "Rect" ]
+
+[node name="height_sb" type="SpinBox" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 192.0
+margin_top = 24.0
+margin_right = 320.0
+margin_bottom = 48.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 255.0
+step = 1.0
+page = 0.0
+value = 3.0
+exp_edit = false
+rounded = false
+editable = true
+prefix = "Height"
+suffix = ""
+_sections_unfolded = [ "Rect" ]
+
 

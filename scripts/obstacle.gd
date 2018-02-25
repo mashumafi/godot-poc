@@ -5,6 +5,3 @@ func _ready():
 
 func render(canvas, pos):
 	_draw(canvas, pos)
-
-func _draw(canvas, pos):
-	pass

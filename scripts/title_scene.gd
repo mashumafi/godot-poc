@@ -6,10 +6,10 @@ var edit = preload("res://scenes/edit.tscn").instance()
 func _ready():
 	var stage_btn = get_node("action_container/stage_btn")
 	stage_btn.connect("pressed", self, "stage_btn_pressed")
-	
+
 	var edit_btn = get_node("action_container/edit_btn")
 	edit_btn.connect("pressed", self, "edit_btn_pressed")
-	
+
 	var quit_btn = get_node("quit_btn")
 	quit_btn.connect("pressed", self, "quit_btn_pressed")
 

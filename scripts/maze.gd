@@ -1,39 +1,81 @@
 extends Control
 
+const Cell = preload("cell.gd")
+
 const WallObstacle = preload("wall_obstacle.gd")
 const FloorObstacle = preload("floor_obstacle.gd")
 const EvilMouseObstacle = preload("evil_mouse_obstacle.gd")
 const GoodMouseObstacle = preload("good_mouse_obstacle.gd")
 
-var cells
+var cells = [
+	[Cell.new(WallObstacle.new()), Cell.new(WallObstacle.new()), Cell.new(WallObstacle.new())],
+	[Cell.new(WallObstacle.new()), Cell.new(FloorObstacle.new()), Cell.new(WallObstacle.new())],
+	[Cell.new(WallObstacle.new()), Cell.new(WallObstacle.new()), Cell.new(WallObstacle.new())]
+]
 
 func _ready():
 	set_process(true)
-	cells = [
-		[WallObstacle.new(), WallObstacle.new(), WallObstacle.new()],
-		[WallObstacle.new(), FloorObstacle.new(), WallObstacle.new()],
-		[WallObstacle.new(), WallObstacle.new(), WallObstacle.new()],
-	]
+	set_process_input(true)
 
 func _process(delta):
 	update()
 
+func get_width():
+	return cells.size()
+
+func get_height():
+	return cells[0].size()
+
+func set_width(width):
+	cells.resize(width)
+	for column in get_width():
+		if cells[column] == null:
+			cells[column] = []
+		cells[column].resize(get_height())
+		for row in get_height():
+			if cells[column][row] == null:
+				cells[column][row] = Cell.new(null)
+	self._setup_neighbors()
+
+func set_height(height):
+	for column in get_width():
+		if cells[column] == null:
+			cells[column] = []
+		cells[column].resize(height)
+		for row in get_height():
+			if cells[column][row] == null:
+				cells[column][row] = Cell.new(null)
+	self._setup_neighbors()
+
+func _setup_neighbors():
+	print("%d %d" % [get_width(), get_height()])
+	for column in get_width():
+		for row in get_height():
+			var cell = cells[column][row]
+
 func _draw():
-	for column in cells.size():
-		for row in cells[column].size():
+	draw_rect(Rect2(Vector2(0, 0), Vector2(256 * 64, 256 * 64)), Color(1, 0, 0))
+	var width = get_width()
+	var height = get_height()
+	for column in get_width():
+		for row in get_height():
 			var cell = cells[column][row]
 			draw_rect(Rect2(Vector2(column * 64, row * 64), Vector2(64, 64)), Color(1, 0, 0))
-			_draw_rect(column * 64, row * 64)
 			cell.render(self, Vector2(column * 64, row * 64))
 
-const line_width = 2
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			if event.pressed:
+				print("begin drag", event.position)
+			else:
+				print("end drag")
+		if event.button_index == BUTTON_WHEEL_UP:
+			print("Wheel up")
 
-func _draw_rect(x1, y1):
-	var x2 = x1 + 64
-	var y2 = y1 + 64
-	var offset = line_width / 2.0
-
-	draw_line(Vector2(x1, y1 + offset), Vector2(x2, y1 + offset), Color(1, 1, 1), line_width)
-	draw_line(Vector2(x2 - offset, y1), Vector2(x2 - offset, y2), Color(1, 1, 1), line_width)
-	draw_line(Vector2(x2, y2 - offset), Vector2(x1, y2 - offset), Color(1, 1, 1), line_width)
-	draw_line(Vector2(x1 + offset, y2), Vector2(x1 + offset, y1), Color(1, 1, 1), line_width)
+		if event.button_index == BUTTON_WHEEL_DOWN:
+			print("Wheel down")
+		print("Viewport Resolution is: ", get_viewport_rect().size)
+			
+	elif event is InputEventMouseMotion:
+		pass
