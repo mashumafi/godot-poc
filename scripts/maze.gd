@@ -7,6 +7,9 @@ const FloorObstacle = preload("floor_obstacle.gd")
 const EvilMouseObstacle = preload("evil_mouse_obstacle.gd")
 const GoodMouseObstacle = preload("good_mouse_obstacle.gd")
 
+var position = Vector2(0, 0)
+var dirty = true
+
 var cells = [
 	[Cell.new(WallObstacle.new()), Cell.new(WallObstacle.new()), Cell.new(WallObstacle.new())],
 	[Cell.new(WallObstacle.new()), Cell.new(FloorObstacle.new()), Cell.new(WallObstacle.new())],
@@ -18,7 +21,12 @@ func _ready():
 	set_process_input(true)
 
 func _process(delta):
-	update()
+	for column in get_width():
+		for row in get_height():
+			var cell = cells[column][row]
+			cell.process(delta)
+	if dirty:
+		update()
 
 func get_width():
 	return cells.size()
@@ -52,30 +60,44 @@ func _setup_neighbors():
 	for column in get_width():
 		for row in get_height():
 			var cell = cells[column][row]
+	dirty = true
 
 func _draw():
-	draw_rect(Rect2(Vector2(0, 0), Vector2(256 * 64, 256 * 64)), Color(1, 0, 0))
-	var width = get_width()
-	var height = get_height()
-	for column in get_width():
-		for row in get_height():
+	var size = get_global_rect().size
+	
+	var startX = max(floor(-position.x / 64), 0)
+	var endX = max(min(min(startX + ceil(size.x / 64) + 1, get_width()), ceil((size.x - position.x) / 64)), 0)
+
+	var startY = max(floor(-position.y / 64), 0)
+	var endY = max(min(min(startY + ceil(size.y / 64) + 1, get_height()), ceil((size.y - position.y) / 64)), 0)
+
+	var count = 0
+	for column in range(startX, endX):
+		for row in range(startY, endY):
 			var cell = cells[column][row]
-			draw_rect(Rect2(Vector2(column * 64, row * 64), Vector2(64, 64)), Color(1, 0, 0))
-			cell.render(self, Vector2(column * 64, row * 64))
+			cell.draw(self, Vector2(position.x + column * 64, position.y + row * 64))
+			count+=1
+	print("drew", count)
+	dirty = false
+
+var lastPos
 
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			if event.pressed:
-				print("begin drag", event.position)
+			if event.pressed and get_rect().has_point(event.position):
+				lastPos = event.position
 			else:
-				print("end drag")
-		if event.button_index == BUTTON_WHEEL_UP:
+				lastPos = null
+
+		if event.button_index == BUTTON_WHEEL_UP and get_rect().has_point(event.position):
 			print("Wheel up")
 
-		if event.button_index == BUTTON_WHEEL_DOWN:
+		if event.button_index == BUTTON_WHEEL_DOWN and get_rect().has_point(event.position):
 			print("Wheel down")
-		print("Viewport Resolution is: ", get_viewport_rect().size)
-			
+
 	elif event is InputEventMouseMotion:
-		pass
+		if lastPos:
+			position += event.position - lastPos
+			lastPos = event.position
+			dirty = true
