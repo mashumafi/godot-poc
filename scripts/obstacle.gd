@@ -1,10 +1,10 @@
 extends Reference
 
 func ready():
-	pass
+    pass
 
-func draw(canvas, pos):
-	pass
+func draw(canvas, pos, scale):
+    pass
 
 func process(delta):
-	pass
+    pass
