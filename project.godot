@@ -13,6 +13,7 @@ config_version=3
 config/name="Mouse Fortune"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
+run/main_loop_type="MouseFortuneSceneTree"
 config/auto_accept_quit=false
 config/quit_on_go_back=false
 config/name_es="Mouse Fortunado"

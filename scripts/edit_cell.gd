@@ -2,7 +2,6 @@ extends "res://scripts/cell.gd"
 
 var hover = false
 var selected = false
-var dirty = false
 
 func draw(canvas, pos, scale):
     .draw(canvas, pos, scale)
@@ -10,7 +9,7 @@ func draw(canvas, pos, scale):
     if hover:
         color = Color(1, 1, 1)
     if selected:
-        color = Color(0, 1, 1)
+        color = Color(1, 1, 0)
     highlight(canvas, pos.x, pos.y, scale, color)
 
 const line_width = 2
