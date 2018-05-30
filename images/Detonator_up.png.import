@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+path="res://.import/Detonator_up.png-b914b96d9ee4fbade5ff1bce49a4229d.stex"
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=[ "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex" ]
+source_file="res://images/Detonator_up.png"
+dest_files=[ "res://.import/Detonator_up.png-b914b96d9ee4fbade5ff1bce49a4229d.stex" ]
 
 [params]
 

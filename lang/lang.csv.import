@@ -8,10 +8,7 @@ type="Translation"
 files=[ "res://lang/lang.en.translation" ]
 
 source_file="res://lang/lang.csv"
-source_md5="eae0c13a3cd93ac6b3a7196622f2affd"
-
 dest_files=[ "res://lang/lang.en.translation" ]
-dest_md5="609c2754de722947614212a54bad4476"
 
 [params]
 

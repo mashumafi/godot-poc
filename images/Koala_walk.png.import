@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+path="res://.import/Koala_walk.png-799f1208567ce8bb26d8924a464b1082.stex"
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=[ "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex" ]
+source_file="res://images/Koala_walk.png"
+dest_files=[ "res://.import/Koala_walk.png-799f1208567ce8bb26d8924a464b1082.stex" ]
 
 [params]
 
