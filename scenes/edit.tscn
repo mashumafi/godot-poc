@@ -212,7 +212,6 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Rect" ]
 
 [node name="details_scroll" type="ScrollContainer" parent="edit_panel/edit_box" index="3"]
 anchor_left = 0.0
