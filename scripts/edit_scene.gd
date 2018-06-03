@@ -3,6 +3,7 @@ extends Node
 const Maze = preload("edit_maze.gd")
 var selected = null
 var g = Canvas.new()
+var generator = ObstacleGenerator.new()
 
 func _ready():
     $edit_panel/edit_box/width_box/width_sb.connect("value_changed", self, "width_sb_pressed")
@@ -15,6 +16,9 @@ func _ready():
     var preview = $edit_panel/edit_box/preview_box/preview
     preview.connect('draw', self, 'preview_draw')
     g.set_canvas(preview)
+
+    for name in generator.names():
+        $edit_panel/edit_box/obstacle_list.add_item(name)
 
 func width_sb_pressed(value):
     $maze.set_width(value)
@@ -33,5 +37,4 @@ func preview_draw():
 
 func cell_changed(cell):
     selected = cell
-    var preview = $edit_panel/edit_box/preview_box/preview
-    preview.update()
+    $edit_panel/edit_box/preview_box/preview.update()

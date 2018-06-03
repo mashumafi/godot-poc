@@ -131,6 +131,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 2
+_sections_unfolded = [ "Grow Direction", "Rect" ]
 
 [node name="height_lbl" type="Label" parent="edit_panel/edit_box/height_box" index="0"]
 anchor_left = 0.0
@@ -181,14 +182,37 @@ prefix = ""
 suffix = ""
 _sections_unfolded = [ "Anchor", "Rect" ]
 
-[node name="preview_box" type="HBoxContainer" parent="edit_panel/edit_box" index="2"]
+[node name="obstacle_list" type="ItemList" parent="edit_panel/edit_box" index="2"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 56.0
 margin_right = 162.0
-margin_bottom = 120.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 0, 48 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+items = [  ]
+select_mode = 0
+allow_reselect = false
+icon_mode = 1
+fixed_icon_size = Vector2( 0, 0 )
+_sections_unfolded = [ "Anchor", "Grow Direction", "Rect" ]
+
+[node name="preview_box" type="HBoxContainer" parent="edit_panel/edit_box" index="3"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 108.0
+margin_right = 162.0
+margin_bottom = 172.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -212,13 +236,14 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+_sections_unfolded = [ "Rect" ]
 
-[node name="details_scroll" type="ScrollContainer" parent="edit_panel/edit_box" index="3"]
+[node name="details_scroll" type="ScrollContainer" parent="edit_panel/edit_box" index="4"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 124.0
+margin_top = 176.0
 margin_right = 162.0
 margin_bottom = 212.0
 rect_pivot_offset = Vector2( 0, 0 )
@@ -248,7 +273,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="Button" type="Button" parent="edit_panel/edit_box" index="4"]
+[node name="Button" type="Button" parent="edit_panel/edit_box" index="5"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
