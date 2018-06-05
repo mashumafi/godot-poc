@@ -1,6 +1,5 @@
 extends Node
 
-const Maze = preload("edit_maze.gd")
 var selected = null
 var g = Canvas.new()
 var generator = ObstacleGenerator.new()

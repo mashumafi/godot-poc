@@ -1,9 +1,9 @@
 extends Node
 
-const Maze = preload("play_maze.gd")
+onready var maze = $maze
 
 func _ready():
-    var maze = Maze.new()
+    pass
 
 func set_level(stage_name, level_name):
     print("%s %s" % [stage_name, level_name])
