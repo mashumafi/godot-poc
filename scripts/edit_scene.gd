@@ -1,7 +1,7 @@
 extends Node
 
 var selected = null
-var g = Canvas.new()
+var graphics = Canvas.new()
 var generator = ObstacleGenerator.new()
 onready var obstacle_list = $edit_panel/edit_box/obstacle_list
 onready var preview = $edit_panel/edit_box/preview_box/preview
@@ -16,7 +16,7 @@ func _ready():
     maze.set_height($edit_panel/edit_box/height_box/height_sb.value)
 
     preview.connect("draw", self, "preview_draw")
-    g.set_canvas(preview)
+    graphics.set_canvas(preview)
 
     for name in generator.names():
         obstacle_list.add_item(name)
@@ -34,15 +34,22 @@ func _notification(what):
             get_parent_control().back()
 
 func obstacle_selected(index):
-    print(obstacle_list.get_item_text(index))
     if selected:
-        selected.set_obstacle(generator.create(obstacle_list.get_item_text(index)))
+        var obstacle = generator.create(obstacle_list.get_item_text(index))
+        obstacle.set_position(selected.position())
+        selected.set_obstacle(obstacle)
         maze.update()
+        preview.update()
 
 func preview_draw():
     if selected:
-        selected.get_obstacle().draw(g)
+        selected.get_obstacle().draw(graphics)
 
 func cell_changed(cell):
     selected = cell
+    var obstacle = selected.get_obstacle()
+    for name in generator.names():
+        if obstacle.name() == name:
+            graphics.set_translation(-selected.position())
+            break
     preview.update()
