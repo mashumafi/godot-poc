@@ -39,7 +39,7 @@ func obstacle_selected(index):
         obstacle.set_position(selected.position())
         selected.set_obstacle(obstacle)
         maze.update()
-        preview.update()
+        graphics.repaint()
 
 func preview_draw():
     if selected:
@@ -52,4 +52,4 @@ func cell_changed(cell):
         if obstacle.name() == name:
             graphics.set_translation(-selected.position())
             break
-    preview.update()
+    graphics.repaint()
