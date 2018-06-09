@@ -47,9 +47,10 @@ func preview_draw():
 
 func cell_changed(cell):
     selected = cell
-    var obstacle = selected.get_obstacle()
-    for name in generator.names():
-        if obstacle.name() == name:
-            graphics.set_translation(-selected.position())
-            break
+    if selected:
+        graphics.set_translation(-selected.position())
+        var obstacle = selected.get_obstacle()
+        for name in generator.names():
+            if obstacle.name() == name:
+                break
     graphics.repaint()
