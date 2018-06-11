@@ -35,7 +35,7 @@ func _notification(what):
 
 func obstacle_selected(index):
     if selected:
-        var obstacle = generator.create(obstacle_list.get_item_text(index))
+        var obstacle = generator.create(index)
         obstacle.set_position(selected.position())
         selected.set_obstacle(obstacle)
         maze.update()
@@ -50,7 +50,9 @@ func cell_changed(cell):
     if selected:
         graphics.set_translation(-selected.position())
         var obstacle = selected.get_obstacle()
-        for name in generator.names():
-            if obstacle.name() == name:
+        var names = generator.names()
+        for i in range(names.size()):
+            if obstacle.name() == names[i]:
+                obstacle_list.select(i)
                 break
     graphics.repaint()
